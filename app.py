@@ -16,7 +16,10 @@ class Hoteis(Resource):
 
 class Hotel(Resource):
     def get(self, hotel_id):
-        return hoteis[0]
+        for hotel in hoteis:
+            if hotel["hotel_id"] == hotel_id:
+                return hotel
+        return { "mensagem": "Hotel não foi encontrado"}
 
 api.add_resource(Hoteis,"/hoteis")
 api.add_resource(Hotel,"/hoteis/<string:hotel_id>")
